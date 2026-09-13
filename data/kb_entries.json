@@ -1,0 +1,240 @@
+[
+  {
+    "id": "termination-norm-01",
+    "category": "termination",
+    "reference_text": "A standard termination clause allows either party to end the agreement with reasonable written notice, often 30 to 90 days."
+  },
+  {
+    "id": "termination-norm-02",
+    "category": "termination",
+    "reference_text": "Termination for material breach commonly allows the breaching party a stated cure period, often 10 to 30 days, before termination takes effect."
+  },
+  {
+    "id": "termination-redflag-01",
+    "category": "termination",
+    "reference_text": "A termination clause that gives only one party the right to terminate for convenience while binding the other party to the full contract term is highly one-sided."
+  },
+  {
+    "id": "termination-redflag-02",
+    "category": "termination",
+    "reference_text": "Allowing immediate termination for any breach without a reasonable opportunity to cure can create disproportionate risk, particularly for minor or accidental breaches."
+  },
+
+  {
+    "id": "liability-norm-01",
+    "category": "liability",
+    "reference_text": "Commercial agreements commonly include a limitation of liability that excludes certain indirect losses and places a reasonable cap on overall liability."
+  },
+  {
+    "id": "liability-norm-02",
+    "category": "liability",
+    "reference_text": "A liability cap is commonly tied to a defined amount, such as fees paid or payable under the agreement during a specified period."
+  },
+  {
+    "id": "liability-redflag-01",
+    "category": "liability",
+    "reference_text": "Unlimited liability for broad categories of contractual claims can expose a party to potentially disproportionate financial risk."
+  },
+  {
+    "id": "liability-redflag-02",
+    "category": "liability",
+    "reference_text": "A liability cap that applies to one party but not the other can create an uneven allocation of contractual risk."
+  },
+  {
+    "id": "liability-redflag-03",
+    "category": "liability",
+    "reference_text": "A liability exclusion that removes responsibility for losses caused by a party's own serious misconduct or intentional wrongdoing can be unusually unfavorable."
+  },
+
+  {
+    "id": "auto-renewal-norm-01",
+    "category": "auto_renewal",
+    "reference_text": "Automatic renewal provisions are common in recurring service agreements when the renewal period and cancellation notice requirements are clearly stated."
+  },
+  {
+    "id": "auto-renewal-norm-02",
+    "category": "auto_renewal",
+    "reference_text": "A reasonable auto-renewal clause gives the parties a clear window, such as 30 to 60 days before renewal, to provide notice of non-renewal."
+  },
+  {
+    "id": "auto-renewal-redflag-01",
+    "category": "auto_renewal",
+    "reference_text": "An automatic renewal clause with a very long notice period can make it easy for a party to unintentionally become committed to another contract term."
+  },
+  {
+    "id": "auto-renewal-redflag-02",
+    "category": "auto_renewal",
+    "reference_text": "A renewal clause that provides no clear reminder, notice requirement, or practical opportunity to cancel can create an unexpected contractual obligation."
+  },
+  {
+    "id": "auto-renewal-redflag-03",
+    "category": "auto_renewal",
+    "reference_text": "An auto-renewal provision that significantly changes pricing or obligations upon renewal without adequate notice can create unexpected financial risk."
+  },
+
+  {
+    "id": "payment_terms-norm-01",
+    "category": "payment_terms",
+    "reference_text": "Net 30 payment terms, where invoices are due 30 days after receipt or issuance, are common in commercial agreements."
+  },
+  {
+    "id": "payment_terms-norm-02",
+    "category": "payment_terms",
+    "reference_text": "A clear payment clause normally identifies the amount, currency, invoice process, payment deadline, and any applicable late-payment consequences."
+  },
+  {
+    "id": "payment_terms-redflag-01",
+    "category": "payment_terms",
+    "reference_text": "Payment terms that allow one party to delay payment indefinitely or without a clearly defined deadline create significant payment risk."
+  },
+  {
+    "id": "payment_terms-redflag-02",
+    "category": "payment_terms",
+    "reference_text": "A clause that permits unilateral withholding or deduction of large amounts from invoices without clear conditions can create substantial payment uncertainty."
+  },
+  {
+    "id": "payment_terms-redflag-03",
+    "category": "payment_terms",
+    "reference_text": "Significant late-payment penalties, fees, or interest that are disproportionate to the unpaid amount can create additional financial risk."
+  },
+
+  {
+    "id": "ip_assignment-norm-01",
+    "category": "ip_assignment",
+    "reference_text": "Intellectual property created specifically for a client as part of the contracted services is commonly assigned to the client when the agreement clearly defines the relevant work."
+  },
+  {
+    "id": "ip_assignment-norm-02",
+    "category": "ip_assignment",
+    "reference_text": "A reasonable IP clause distinguishes newly created work from pre-existing materials, tools, libraries, and know-how owned by the service provider."
+  },
+  {
+    "id": "ip_assignment-redflag-01",
+    "category": "ip_assignment",
+    "reference_text": "An IP assignment that transfers ownership of all of a party's existing intellectual property, including unrelated prior work, is unusually broad."
+  },
+  {
+    "id": "ip_assignment-redflag-02",
+    "category": "ip_assignment",
+    "reference_text": "An IP clause that gives one party ownership of work created completely outside the scope of the agreement can create an excessive transfer of rights."
+  },
+  {
+    "id": "ip_assignment-redflag-03",
+    "category": "ip_assignment",
+    "reference_text": "A clause that provides no protection for a contractor's pre-existing technology, tools, or reusable materials can unintentionally transfer valuable intellectual property."
+  },
+
+  {
+    "id": "non-compete-norm-01",
+    "category": "non_compete",
+    "reference_text": "Where legally enforceable, a reasonable non-compete provision is generally limited in duration, geographic scope, and the specific competitive activities it restricts."
+  },
+  {
+    "id": "non-compete-norm-02",
+    "category": "non_compete",
+    "reference_text": "Narrow restrictions focused on directly competing activities are generally more reasonable than broad restrictions covering an entire industry."
+  },
+  {
+    "id": "non-compete-redflag-01",
+    "category": "non_compete",
+    "reference_text": "A non-compete that prevents a party from working anywhere in a broad industry for an extended period can substantially restrict future business or employment opportunities."
+  },
+  {
+    "id": "non-compete-redflag-02",
+    "category": "non_compete",
+    "reference_text": "A restriction with an unusually broad geographic scope, such as covering multiple countries without a clear business justification, can be disproportionately restrictive."
+  },
+  {
+    "id": "non-compete-redflag-03",
+    "category": "non_compete",
+    "reference_text": "A non-compete that prohibits activities far beyond the actual competitive interests of the agreement may be broader than reasonably necessary."
+  },
+
+  {
+    "id": "indemnification-norm-01",
+    "category": "indemnification",
+    "reference_text": "Indemnification provisions commonly require a party to cover specified third-party claims arising from particular risks, such as its own negligence or infringement."
+  },
+  {
+    "id": "indemnification-norm-02",
+    "category": "indemnification",
+    "reference_text": "A balanced indemnification clause clearly identifies the covered claims, the responsible party, and the procedures for handling claims and settlements."
+  },
+  {
+    "id": "indemnification-redflag-01",
+    "category": "indemnification",
+    "reference_text": "An indemnification clause that makes one party responsible for essentially any loss, claim, or expense connected to the agreement can create an unusually broad obligation."
+  },
+  {
+    "id": "indemnification-redflag-02",
+    "category": "indemnification",
+    "reference_text": "One-sided indemnification that protects one party from broad categories of claims while providing little or no reciprocal protection can create an uneven allocation of risk."
+  },
+  {
+    "id": "indemnification-redflag-03",
+    "category": "indemnification",
+    "reference_text": "An indemnification obligation that covers losses caused primarily by the protected party's own actions can shift responsibility unfairly."
+  },
+  {
+    "id": "termination-norm-03",
+    "category": "termination",
+    "reference_text": "A termination clause may provide different procedures for termination for convenience and termination for cause, with breach-related termination generally requiring specific grounds."
+  },
+  {
+    "id": "termination-redflag-03",
+    "category": "termination",
+    "reference_text": "A termination provision that allows one party to terminate without notice for vague or undefined reasons can create significant uncertainty for the other party."
+  },
+
+  {
+    "id": "liability-norm-03",
+    "category": "liability",
+    "reference_text": "Reasonable liability provisions often identify specific exceptions to the liability cap, such as fraud, intentional misconduct, or certain confidentiality and intellectual property obligations."
+  },
+  {
+    "id": "liability-redflag-04",
+    "category": "liability",
+    "reference_text": "A liability clause that excludes nearly every category of loss while imposing broad liability on the other party can create a significantly unbalanced allocation of risk."
+  },
+
+  {
+    "id": "auto-renewal-norm-03",
+    "category": "auto_renewal",
+    "reference_text": "A clear renewal provision normally states the length of each renewal period and explains how either party can prevent the agreement from renewing."
+  },
+  {
+    "id": "auto-renewal-redflag-04",
+    "category": "auto_renewal",
+    "reference_text": "A contract that automatically renews for a substantially longer period than the original term without clear cancellation rights can create an unexpected long-term commitment."
+  },
+
+  {
+    "id": "payment_terms-norm-03",
+    "category": "payment_terms",
+    "reference_text": "Payment clauses commonly specify when an invoice becomes payable and may include reasonable procedures for disputing an invoice."
+  },
+
+  {
+    "id": "ip_assignment-norm-03",
+    "category": "ip_assignment",
+    "reference_text": "A well-defined IP assignment normally identifies when ownership transfers and may require payment or completion of specified obligations before the transfer becomes effective."
+  },
+
+  {
+    "id": "non-compete-norm-03",
+    "category": "non_compete",
+    "reference_text": "A reasonable restrictive covenant should be connected to a legitimate business interest and should not restrict more activity than necessary to protect that interest."
+  },
+
+  {
+    "id": "indemnification-norm-03",
+    "category": "indemnification",
+    "reference_text": "A balanced indemnification provision commonly limits indemnification to specified events and may exclude claims caused by the other party's own misconduct."
+  },
+
+  {
+    "id": "indemnification-redflag-04",
+    "category": "indemnification",
+    "reference_text": "An indemnification clause that requires one party to cover claims resulting from the other party's own negligence or misconduct can shift responsibility unfairly."
+  }
+]

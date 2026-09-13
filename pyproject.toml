@@ -8,6 +8,7 @@ dependencies = [
     "alembic>=1.19.1",
     "fastapi>=0.141.1",
     "fastapi-health>=0.4.0",
+    "openai>=3.13.0",
     "psycopg[binary]>=3.3.5",
     "pydantic>=2.13.5",
     "pydantic-settings>=2.15.0",
