@@ -2,6 +2,7 @@ from unittest.mock import patch
 
 from agents.segmenter import _needs_fallback, segment, segment_rule_based
 
+
 # Empty contracts should produce no clauses.
 def test_empty_input_produces_no_clauses():
     assert segment_rule_based("") == []
