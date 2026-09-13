@@ -10,7 +10,15 @@ from config import settings
 from db.models import AgentAuditLog
 from prompts.segmenter import FALLBACK_PROMPT, SYSTEM_PROMPT
 
-_client = OpenAI(api_key=settings.deepseek_api_key, base_url=settings.deepseek_base_url)
+_client: OpenAI | None = None
+
+
+def _get_client() -> OpenAI:
+    global _client
+    if _client is None:
+        _client = OpenAI(api_key=settings.deepseek_api_key, base_url=settings.deepseek_base_url)
+    return _client
+
 
 # Matches common contract section headings such as "1.", "1.1", "Section 2", and "Article III".
 HEADING_PATTERNS = re.compile(
@@ -52,7 +60,7 @@ def _needs_fallback(clauses: list[str]) -> bool:
 
 
 def segment_with_llm(contract_text: str) -> list[str]:
-    response = _client.chat.completions.create(
+    response = _get_client().chat.completions.create(
         model=settings.deepseek_model,
         messages=[
             {"role": "system", "content": SYSTEM_PROMPT},
