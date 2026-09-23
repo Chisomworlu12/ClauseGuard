@@ -19,5 +19,18 @@ class Settings(BaseSettings):
     segmenter_min_clauses: int = 2
     segmenter_max_clause_words: int = 800
 
+    # Retrival
+    retrieval_chunk_size: int = 500
+    retrieval_chunk_overlap: int = 50
+    retrieval_chunk_separators: list[str] = ["\n\n", "\n", " ", ""]
+    retrieval_embedding_model: str= "sentence-transformers/all-MiniLM-L6-V2"
+    retrieval_embedding_device: str= "cpu"
+    retrieval_chroma_path: str= ".chroma"
+    retrieval_collection_name: str= "clauseguard_kb"
+    retrieval_dense_top_k: int= 5
+    retrieval_bm25_top_k: int= 5
+
+
+
 
 settings = Settings()
