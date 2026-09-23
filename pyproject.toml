@@ -6,12 +6,20 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "alembic>=1.19.1",
+    "chromadb>=1.5.9",
     "fastapi>=0.141.1",
     "fastapi-health>=0.4.0",
+    "langchain>=1.4.2",
+    "langchain-chroma>=1.1.0",
+    "langchain-community>=0.4.2",
+    "langchain-huggingface>=1.2.2",
+    "langchain-text-splitters>=1.1.2",
     "openai>=3.13.0",
     "psycopg[binary]>=3.3.5",
     "pydantic>=2.13.5",
     "pydantic-settings>=2.15.0",
+    "rank-bm25>=0.2.2",
+    "sentence-transformers>=6.1.0",
     "uvicorn>=0.52.4",
 ]
 
