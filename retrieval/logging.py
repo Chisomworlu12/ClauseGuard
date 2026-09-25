@@ -1,11 +1,11 @@
 import uuid
 
 from config import settings
-from retrieval.chroma_store import retrieve_dense_with_scores
-from retrieval.ensemble import get_hybrid_retriever
-from retrieval.bm25 import get_bm25_retriever
 from db.models import AgentAuditLog
 from db.session import SessionLocal
+from retrieval.bm25 import get_bm25_retriever
+from retrieval.chroma_store import retrieve_dense_with_scores
+from retrieval.ensemble import get_hybrid_retriever
 from retrieval.reranker import get_reranked_retriever
 
 

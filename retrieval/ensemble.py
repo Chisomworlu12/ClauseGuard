@@ -4,6 +4,7 @@ from config import settings
 from retrieval.bm25 import get_bm25_retriever
 from retrieval.chroma_store import get_dense_retriever
 
+
 def get_hybrid_retriever()-> EnsembleRetriever:
 
     """Combine dense and BM25 retrievers using configurable RRF fusion weights."""
