@@ -65,3 +65,14 @@ def get_dense_retriever():
     return get_vectorstore().as_retriever(
         search_kwargs = { "k": settings.retrieval_dense_top_k}
     )
+
+def retrieve_dense_with_scores(query: str):
+
+    """Run dense Chroma retrieval and return documents with relevance scores."""
+    
+    return get_vectorstore().similarity_search_with_relevance_scores(
+        query, k= settings.retrieval_log_top_n
+    )
+
+
+

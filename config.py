@@ -29,6 +29,13 @@ class Settings(BaseSettings):
     retrieval_collection_name: str= "clauseguard_kb"
     retrieval_dense_top_k: int= 5
     retrieval_bm25_top_k: int= 5
+    retrieval_dense_weight: float= 0.5
+    retrieval_bm25_weight: float= 0.5
+    retrieval_fused_top_k: int= 10
+    retrieval_log_top_n: int =10
+    retrieval_rerank_model: str ="ms-marco-MultiBERT-L-12"
+    retrieval_rerank_top_n: int = 5
+  
 
 
 

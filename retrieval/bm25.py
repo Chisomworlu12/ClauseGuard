@@ -18,6 +18,9 @@ def tokenize(text:str) -> list[str]:
     return re.findall(r"\w+", text.lower())
 
 class CustomBM25Retriever(BaseRetriever):
+
+    """BM25 retriever backed by the open-source `rank-bm25` package."""
+    
     documents: list[Document]
     top_k: int
     vectorizer: Any = Field(exclude=True)
@@ -43,18 +46,32 @@ class CustomBM25Retriever(BaseRetriever):
         ]
 
 
-def get_bm25_retriever()-> CustomBM25Retriever:
+    def retrieve_with_scores(self, query: str) -> list[tuple[Document, float]]:
+        """Return top-K documents with their BM25 scores."""
+        scores = self.vectorizer.get_scores(tokenize(query))
+        ranked = sorted(
+            range(len(scores)),
+            key=lambda index: scores[index],
+            reverse=True,
+        )
 
+        return [
+            (self.documents[index], float(scores[index]))
+            for index in ranked[: self.top_k]
+            if scores[index] > 0
+        ]
+
+
+def get_bm25_retriever(top_k: int | None = None) -> CustomBM25Retriever:
     """Build a BM25 retriever from the same split KB documents used by dense retrieval."""
-
     documents = split_kb_documents(load_kb_documents())
 
     if not documents:
-        raise ValueError("Cannot build BM25 retiever without KB documents")
+        raise ValueError("Cannot build BM25 retriever without KB documents")
 
     return CustomBM25Retriever(
         documents=documents,
-        top_k= settings.retrieval_bm25_top_k,
+        top_k=top_k or settings.retrieval_bm25_top_k,
         vectorizer=BM25Okapi(
             [tokenize(document.page_content) for document in documents]
         ),
