@@ -1,14 +1,15 @@
-
+from agents.aggregator import build_final_report
 from agents.judgment import judge_clause
 from agents.segmenter import run_segmenter
 from db.models import AgentAuditLog, AnalysisRun, Clause
 from db.session import SessionLocal
 
-CONTRACT ="""1. Term
-This Agreement begins on the Effective Date and continues for twelve months
+CONTRACT = """1. Term
+This Agreement begins on the Effective Date and continues for twelve months.
 
 2. Termination
-Either party may terminate this Agreement at any tie, with or without cause, upon no notice to the other party.
+Either party may terminate this Agreement at any time, with or without cause,
+upon no notice to the other party.
 
 3. Payment
 Client shall pay Provider within sixty days of receipt of invoice."""
@@ -17,14 +18,20 @@ Client shall pay Provider within sixty days of receipt of invoice."""
 def main():
     db = SessionLocal()
 
-    run = AnalysisRun(contract_text= CONTRACT, status = "running", judgment_model = "frontier")
+    run = AnalysisRun(
+        contract_text=CONTRACT,
+        status="running",
+        judgment_model="frontier",
+    )
     db.add(run)
     db.commit()
 
-    clause_text = run_segmenter(db, run.id, CONTRACT)
-    print(f"segmented into {len(clause_text)} clauses")
+    clause_texts = run_segmenter(db, run.id, CONTRACT)
+    print(f"segmented into {len(clause_texts)} clauses")
 
-    for position, text in enumerate(clause_text, 1):
+    judgments = []
+
+    for position, text in enumerate(clause_texts, 1):
         clause = Clause(
             run_id=run.id,
             text=text,
@@ -45,8 +52,7 @@ def main():
                 clause_text=text,
                 contract_context=CONTRACT,
             )
-        except Exception as error: # noqa: BLE001
-            # A single clause failure must not stop the remaining clauses.
+        except Exception as error:  # noqa: BLE001
             judgment = {
                 "risk_level": "unable_to_assess",
                 "category": "unable_to_assess",
@@ -55,30 +61,46 @@ def main():
             print(f"\n[clause {position}] failed, continuing...")
             print(f"  error: {error}")
 
+        judgments.append(
+            {
+                **judgment,
+                "clause_id": str(clause.id),
+                "position": position,
+            }
+        )
+
         print(f"\n[clause {position}] {text[:60]}...")
         print(f"  risk_level: {judgment['risk_level']}")
         print(f"  category:   {judgment['category']}")
         print(f"  reason:     {judgment['reason']}")
 
+    final_report = build_final_report(
+        db=db,
+        run_id=run.id,
+        judgments=judgments,
+        contract_context=CONTRACT,
+    )
 
-    judgment_audits = (
+    print("\nFINAL REPORT")
+    print(final_report)
+
+    verifier_audits = (
         db.query(AgentAuditLog)
         .filter(
             AgentAuditLog.run_id == run.id,
-            AgentAuditLog.agent == "judgment",
+            AgentAuditLog.agent == "verifier",
         )
         .all()
     )
 
-    assert len(judgment_audits) == len(clause_text)
-    assert all(row.clause_id is not None for row in judgment_audits)
+    assert len(verifier_audits) == 1
+    assert verifier_audits[0].clause_id is None
 
     print(f"\nrun_id={run.id}")
-    print(f"judgment audit rows: {len(judgment_audits)}")
-    print(
-        "audited clause ids:",
-        [str(row.clause_id) for row in judgment_audits],
-    )    
+    print(f"verifier audit rows: {len(verifier_audits)}")
+    print(f"verifier clause_id: {verifier_audits[0].clause_id}")
+
+    db.close()
 
 
 if __name__ == "__main__":

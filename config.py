@@ -40,8 +40,23 @@ class Settings(BaseSettings):
     judgment_max_retries: int = 3
     judgment_retry_backoff_base: float = 2.0
     judgment_max_ungrounded_attempts: int = 2
-    
 
+    #Aggregator
+    aggregator_risk_order : list[str] = [
+        "high",
+        "medium",
+        "low",
+        "unable_to_assess"
+    ]
+
+    aggregator_low_confidence_values: list[str] = ["low"]
+    aggregator_escalate_risk_levels: list[str] = ["unable_to_assess"]
+
+    # Final report
+    legal_disclaimer: str = (
+        "This report is for informational purposes only and does not constitute "
+        "legal advice. Consult a qualified legal professional before making decisions."
+    )
 
 
 settings = Settings()
