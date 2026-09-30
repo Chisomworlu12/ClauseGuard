@@ -1,4 +1,6 @@
-from agents.aggregator import build_final_report
+import uuid
+
+from agents.aggregator import build_final_report, mark_escalated
 from agents.judgment import judge_clause
 from agents.segmenter import run_segmenter
 from db.models import AgentAuditLog, AnalysisRun, Clause
@@ -73,6 +75,26 @@ def main():
         print(f"  risk_level: {judgment['risk_level']}")
         print(f"  category:   {judgment['category']}")
         print(f"  reason:     {judgment['reason']}")
+    judgments = mark_escalated(judgments)
+    
+    for judgment in judgments:
+        clause = db.get(
+            Clause,
+            uuid.UUID(judgment["clause_id"]),
+        )
+
+        if clause is None:
+            raise RuntimeError(
+                f"Clause not found: {judgment['clause_id']}"
+            )
+
+        clause.risk_level = judgment["risk_level"]
+        clause.category = judgment["category"]
+        clause.reason = judgment["reason"]
+        clause.confidence = judgment["confidence"]
+
+    db.commit()
+
 
     final_report = build_final_report(
         db=db,
@@ -80,6 +102,10 @@ def main():
         judgments=judgments,
         contract_context=CONTRACT,
     )
+
+    run.overall_verdict = final_report
+    run.status = "complete"
+    db.commit()
 
     print("\nFINAL REPORT")
     print(final_report)
@@ -93,12 +119,42 @@ def main():
         .all()
     )
 
+    all_audits = (
+        db.query(AgentAuditLog)
+        .filter(AgentAuditLog.run_id == run.id)
+        .all()
+    )
+
+    audit_agents = [audit.agent for audit in all_audits]
+
+    assert audit_agents.count("segmenter") == 1
+    assert audit_agents.count("judgment") == len(clause_texts)
+    assert audit_agents.count("verifier") == 1
+
+    print(f"total audit rows: {len(all_audits)}")
+    print(f"audit agents: {audit_agents}")
+
     assert len(verifier_audits) == 1
     assert verifier_audits[0].clause_id is None
 
-    print(f"\nrun_id={run.id}")
-    print(f"verifier audit rows: {len(verifier_audits)}")
-    print(f"verifier clause_id: {verifier_audits[0].clause_id}")
+    saved_run = db.get(AnalysisRun, run.id)
+
+    saved_clauses = (
+        db.query(Clause)
+        .filter(Clause.run_id == run.id)
+        .order_by(Clause.position)
+        .all()
+    )
+
+    assert saved_run.status == "complete"
+    assert saved_run.overall_verdict
+    assert len(saved_clauses) == len(clause_texts)
+    assert all(clause.category != "pending" for clause in saved_clauses)
+    assert all(clause.reason != "pending" for clause in saved_clauses)
+
+    print(f"analysis status: {saved_run.status}")
+    print(f"saved clauses: {len(saved_clauses)}")
+    print(f"overall verdict saved: {bool(saved_run.overall_verdict)}")
 
     db.close()
 
