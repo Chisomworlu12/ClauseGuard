@@ -35,8 +35,12 @@ class Settings(BaseSettings):
     retrieval_log_top_n: int =10
     retrieval_rerank_model: str ="ms-marco-MultiBERT-L-12"
     retrieval_rerank_top_n: int = 5
-  
 
+    # Judgement
+    judgment_max_retries: int = 3
+    judgment_retry_backoff_base: float = 2.0
+    judgment_max_ungrounded_attempts: int = 2
+    
 
 
 
