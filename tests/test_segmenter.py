@@ -46,3 +46,35 @@ def test_well_formed_text_does_not_call_llm():
 
         # Confirm DeepSeek was not called.
         mock_llm.assert_not_called()
+
+# Whitespace-only input should produce no clauses.
+def test_whitespace_only_input_produces_no_clauses():
+    assert segment_rule_based("   \n\n\t  ") == []
+
+
+# Paragraph boundaries should split unheaded contract text.
+def test_paragraph_boundaries_split_clauses():
+    text = (
+        "Provider shall deliver the services.\n\n"
+        "Client shall pay within thirty days."
+    )
+
+    assert segment_rule_based(text) == [
+        "Provider shall deliver the services.",
+        "Client shall pay within thirty days.",
+    ]
+
+
+# Common heading formats should preserve clause boundaries and text.
+def test_section_and_article_headings_split_clauses():
+    text = (
+        "Section 1 Term\n"
+        "This agreement lasts twelve months.\n\n"
+        "Article II Payment\n"
+        "Client shall pay within thirty days."
+    )
+
+    assert segment_rule_based(text) == [
+        "Section 1 Term\nThis agreement lasts twelve months.",
+        "Article II Payment\nClient shall pay within thirty days.",
+    ]
