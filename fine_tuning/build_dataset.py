@@ -4,7 +4,6 @@ from pathlib import Path
 
 from eval.cases import EVAL_CASES
 
-
 SYSTEM_PROMPT = (
     "You are a contract-risk judgment assistant. "
     "Return JSON with risk_level, category, and reason."

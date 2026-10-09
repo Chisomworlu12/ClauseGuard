@@ -6,7 +6,6 @@ from peft import LoraConfig
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from trl import SFTConfig, SFTTrainer
 
-
 MODEL_ID = "Qwen/Qwen2.5-1.5B-Instruct"
 DATA_DIR = Path("data/fine_tuning")
 OUTPUT_DIR = "models/qwen2.5-1.5b-clauseguard"
