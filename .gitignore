@@ -18,4 +18,5 @@ docs/
 .chroma/
 nul
 
+models/
 AGENTS.md
