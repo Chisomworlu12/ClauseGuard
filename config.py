@@ -13,6 +13,8 @@ class Settings(BaseSettings):
     deepseek_api_key: str = ""
     deepseek_base_url: str = "https://api.deepseek.com"
     deepseek_model: str = "deepseek-chat"
+    fine_tuned_base_model: str = "Qwen/Qwen2.5-1.5B-Instruct"
+    fine_tuned_adapter_path: str = "models/qwen2.5-1.5b-clauseguard"
 
     # FR-SEG-002: below this many clauses, or above this many words in a single
     # clause, the Segmenter falls back to an LLM call.
@@ -57,6 +59,8 @@ class Settings(BaseSettings):
         "This report is for informational purposes only and does not constitute "
         "legal advice. Consult a qualified legal professional before making decisions."
     )
+
+   
 
 
 settings = Settings()

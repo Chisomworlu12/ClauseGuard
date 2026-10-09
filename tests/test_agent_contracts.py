@@ -1,6 +1,8 @@
 import json
 import uuid
 
+import pytest
+
 from agents.aggregator import mark_escalated, sort_judgments
 from agents.judgment import _parse_judgment
 
@@ -37,6 +39,17 @@ def test_judgment_output_matches_aggregator_contract():
     assert judgment["clause_id"]
     assert judgment["position"] == 1
 
+
+def test_broken_judgment_contract_is_rejected():
+    """Ensure malformed judgment output cannot enter the aggregation pipeline."""
+
+    broken_judgment = {
+        "category": "termination",
+        "reason": "termination-redflag-03",
+    }
+
+    with pytest.raises(ValueError, match="Unknown risk_level"):
+        _parse_judgment(json.dumps(broken_judgment), ["termination-redflag-03"])
 
 def test_aggregator_preserves_judgment_fields():
     """Verify sorting and escalation do not discard judgment data."""
