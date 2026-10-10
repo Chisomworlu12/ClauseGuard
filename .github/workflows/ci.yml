@@ -31,10 +31,23 @@ jobs:
       - run: uv run ruff check .
       - run: uv run alembic upgrade head
       - run: uv run pytest
+
+  eval-gate:
+    name: Evaluation regression gate
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync --all-extras --dev
+      - name: Run evaluation gate
+        run: uv run python -m eval.ci_gate
+
   docker-build:
     name: Build Docker image
     runs-on: ubuntu-latest
-    needs: test
+    needs: [test, eval-gate]
 
     steps:
       - uses: actions/checkout@v4

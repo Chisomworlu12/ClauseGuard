@@ -1,0 +1,8 @@
+{
+  "model": "frontier",
+  "retrieval_enabled": true,
+  "accuracy": 0.6667,
+  "mrr": 0.4063,
+  "ndcg": 0.4457,
+  "tolerance": 0.05
+}
