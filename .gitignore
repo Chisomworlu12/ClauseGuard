@@ -20,3 +20,5 @@ nul
 
 models/
 AGENTS.md
+.neon
+node_modules/

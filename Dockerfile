@@ -8,7 +8,12 @@ RUN uv sync --frozen --no-dev
 COPY . .
 
 ENV PATH="/app/.venv/bin:$PATH"
+ENV DATABASE_URL="postgresql+psycopg://build:build@localhost:5432/build"
+ENV PORT=10000
 
-EXPOSE 8000
+# Build the static Chroma knowledge base into the image.
+RUN uv run python -c "from retrieval.chroma_store import ingest_kb; ingest_kb()"
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+EXPOSE 10000
+
+CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT:-10000}"]
