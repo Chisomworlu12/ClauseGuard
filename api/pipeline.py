@@ -21,7 +21,6 @@ def run_analysis(
 
     db.add(run)
     db.commit()
-    db.refresh(run)
 
     try:
         clause_texts = run_segmenter(db, run.id, contract_text)
@@ -99,6 +98,7 @@ def run_analysis(
         return run, final_report
 
     except Exception:
+        db.rollback()
         run.status = "failed"
         db.commit()
         raise
