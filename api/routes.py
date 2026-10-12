@@ -4,7 +4,6 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from api.pipeline import run_analysis
 from api.schemas import (
     AnalysisResponse,
     AnalyzeRequest,
@@ -23,6 +22,8 @@ def analyze_contract(
     db: Session = Depends(get_db),  # noqa: B008
 ):
     """Run the complete contract analysis pipeline."""
+
+    from api.pipeline import run_analysis
 
     run, final_report = run_analysis(
         contract_text=request.contract_text,

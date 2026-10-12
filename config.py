@@ -27,6 +27,7 @@ class Settings(BaseSettings):
     retrieval_chunk_separators: list[str] = ["\n\n", "\n", " ", ""]
     retrieval_embedding_model: str= "sentence-transformers/all-MiniLM-L6-V2"
     retrieval_embedding_device: str= "cpu"
+    retrieval_mode: str = "hybrid"
     retrieval_chroma_path: str= ".chroma"
     retrieval_collection_name: str= "clauseguard_kb"
     retrieval_dense_top_k: int= 5

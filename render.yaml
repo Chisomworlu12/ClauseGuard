@@ -19,3 +19,5 @@ services:
         value: https://api.deepseek.com
       - key: DEEPSEEK_MODEL
         value: deepseek-chat
+      - key: RETRIEVAL_MODE
+        value: bm25

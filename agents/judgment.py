@@ -10,7 +10,6 @@ from sqlalchemy.orm import Session
 from config import settings
 from db.models import AgentAuditLog
 from prompts.judgment import JUDGMENT_PROMPT, SYSTEM_PROMPT
-from retrieval.reranker import get_reranked_retriever
 
 _client : OpenAI | None = None
 
@@ -141,7 +140,14 @@ def judge_clause(
 )-> dict:
 
     if retrieved_docs is None:
-        retrieved_docs = get_reranked_retriever().invoke(clause_text)
+        if settings.retrieval_mode == "bm25":
+            from retrieval.bm25 import get_bm25_retriever
+
+            retrieved_docs = get_bm25_retriever().invoke(clause_text)
+        else:
+            from retrieval.reranker import get_reranked_retriever
+
+            retrieved_docs = get_reranked_retriever().invoke(clause_text)
 
     judgment = _judge_with_llm(clause_text, retrieved_docs, contract_context)
 
