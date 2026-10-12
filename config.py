@@ -13,6 +13,7 @@ class Settings(BaseSettings):
     deepseek_api_key: str = ""
     deepseek_base_url: str = "https://api.deepseek.com"
     deepseek_model: str = "deepseek-chat"
+    llm_timeout_seconds: float = 30.0
     fine_tuned_base_model: str = "Qwen/Qwen2.5-1.5B-Instruct"
     fine_tuned_adapter_path: str = "models/qwen2.5-1.5b-clauseguard"
 

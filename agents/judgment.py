@@ -25,8 +25,10 @@ def _get_client() -> OpenAI:
     global _client
     if _client is None:
         _client = OpenAI(
-            api_key= settings.deepseek_api_key, 
-            base_url= settings.deepseek_base_url
+            api_key=settings.deepseek_api_key,
+            base_url=settings.deepseek_base_url,
+            timeout=settings.llm_timeout_seconds,
+            max_retries=0,
         )
     return _client
 

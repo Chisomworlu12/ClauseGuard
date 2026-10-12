@@ -55,8 +55,10 @@ def mark_escalated(judgments: list[dict])-> list[dict]:
 
 def _get_client() -> OpenAI:
     return OpenAI(
-        api_key= settings.deepseek_api_key,
-        base_url= settings.deepseek_base_url,
+        api_key=settings.deepseek_api_key,
+        base_url=settings.deepseek_base_url,
+        timeout=settings.llm_timeout_seconds,
+        max_retries=0,
     )
 
 def generate_overall_verdict(judgments: list[dict],contract_context: str = "",) -> str:
