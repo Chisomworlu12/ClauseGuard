@@ -474,28 +474,16 @@ name = "clauseguard"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
-    { name = "accelerate" },
     { name = "alembic" },
-    { name = "chromadb" },
-    { name = "datasets" },
     { name = "fastapi" },
     { name = "fastapi-health" },
-    { name = "flashrank" },
     { name = "langchain" },
-    { name = "langchain-chroma" },
-    { name = "langchain-community" },
-    { name = "langchain-huggingface" },
     { name = "langchain-text-splitters" },
     { name = "openai" },
-    { name = "peft" },
     { name = "psycopg", extra = ["binary"] },
     { name = "pydantic" },
     { name = "pydantic-settings" },
     { name = "rank-bm25" },
-    { name = "sentence-transformers" },
-    { name = "torch" },
-    { name = "transformers" },
-    { name = "trl" },
     { name = "uvicorn" },
 ]
 
@@ -505,31 +493,35 @@ dev = [
     { name = "pytest" },
     { name = "ruff" },
 ]
+fine-tuning = [
+    { name = "accelerate" },
+    { name = "datasets" },
+    { name = "peft" },
+    { name = "torch" },
+    { name = "transformers" },
+    { name = "trl" },
+]
+retrieval-heavy = [
+    { name = "chromadb" },
+    { name = "flashrank" },
+    { name = "langchain-chroma" },
+    { name = "langchain-community" },
+    { name = "langchain-huggingface" },
+    { name = "sentence-transformers" },
+]
 
 [package.metadata]
 requires-dist = [
-    { name = "accelerate", specifier = ">=1.15.0" },
     { name = "alembic", specifier = ">=1.19.1" },
-    { name = "chromadb", specifier = ">=1.5.9" },
-    { name = "datasets", specifier = ">=5.1.0" },
     { name = "fastapi", specifier = ">=0.141.1" },
     { name = "fastapi-health", specifier = ">=0.4.0" },
-    { name = "flashrank", specifier = ">=0.2.10" },
     { name = "langchain", specifier = ">=1.4.2" },
-    { name = "langchain-chroma", specifier = ">=1.1.0" },
-    { name = "langchain-community", specifier = ">=0.4.2" },
-    { name = "langchain-huggingface", specifier = ">=1.2.2" },
     { name = "langchain-text-splitters", specifier = ">=1.1.2" },
     { name = "openai", specifier = ">=3.13.0" },
-    { name = "peft", specifier = ">=0.21.2" },
     { name = "psycopg", extras = ["binary"], specifier = ">=3.3.5" },
     { name = "pydantic", specifier = ">=2.13.5" },
     { name = "pydantic-settings", specifier = ">=2.15.0" },
     { name = "rank-bm25", specifier = ">=0.2.2" },
-    { name = "sentence-transformers", specifier = ">=6.1.0" },
-    { name = "torch", specifier = ">=2.14.0" },
-    { name = "transformers", specifier = ">=5.17.0" },
-    { name = "trl", specifier = ">=1.14.1" },
     { name = "uvicorn", specifier = ">=0.52.4" },
 ]
 
@@ -538,6 +530,22 @@ dev = [
     { name = "httpx", specifier = ">=0.28.1" },
     { name = "pytest", specifier = ">=9.1.1" },
     { name = "ruff", specifier = ">=0.16.5" },
+]
+fine-tuning = [
+    { name = "accelerate", specifier = ">=1.15.0" },
+    { name = "datasets", specifier = ">=5.1.0" },
+    { name = "peft", specifier = ">=0.21.2" },
+    { name = "torch", specifier = ">=2.14.0" },
+    { name = "transformers", specifier = ">=5.17.0" },
+    { name = "trl", specifier = ">=1.14.1" },
+]
+retrieval-heavy = [
+    { name = "chromadb", specifier = ">=1.5.9" },
+    { name = "flashrank", specifier = ">=0.2.10" },
+    { name = "langchain-chroma", specifier = ">=1.1.0" },
+    { name = "langchain-community", specifier = ">=0.4.2" },
+    { name = "langchain-huggingface", specifier = ">=1.2.2" },
+    { name = "sentence-transformers", specifier = ">=6.1.0" },
 ]
 
 [[package]]
