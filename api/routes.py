@@ -1,9 +1,10 @@
 from uuid import UUID
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
+from api.rate_limit import enforce_daily_limit
 from api.schemas import (
     AnalysisResponse,
     AnalyzeRequest,
@@ -18,15 +19,23 @@ router = APIRouter(prefix="/api", tags=["api"])
 
 @router.post("/analyze", response_model=AnalysisResponse)
 def analyze_contract(
-    request: AnalyzeRequest,
+    request: Request,
+    payload: AnalyzeRequest,
     db: Session = Depends(get_db),  # noqa: B008
 ):
     """Run the complete contract analysis pipeline."""
 
+    client_ip = request.client.host if request.client else "unknown"
+
+    enforce_daily_limit(
+        db=db,
+        ip_address=client_ip,
+    )
+
     from api.pipeline import run_analysis
 
     run, final_report = run_analysis(
-        contract_text=request.contract_text,
+        contract_text=payload.contract_text,
         db=db,
     )
 
