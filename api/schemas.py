@@ -34,3 +34,12 @@ class EvalRunResponse(BaseModel):
     mrr: float
     ndcg: float
     commit_hash: str
+class AdminMetricsResponse(BaseModel):
+    """Return aggregate usage metrics without exposing contracts or IP addresses."""
+
+    total_analyses: int
+    analyses_today: int
+    unique_clients: int
+    completed_analyses: int
+    failed_analyses: int
+    risk_counts: dict[str, int]
