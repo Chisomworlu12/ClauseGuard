@@ -23,7 +23,7 @@ class RunSummary(BaseModel):
     run_id: UUID
     status: str
     contract_text: str
-
+    overall_verdict: str | None = None
 
 class EvalRunResponse(BaseModel):
     """Represent the latest persisted evaluation metrics."""

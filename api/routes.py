@@ -59,6 +59,7 @@ def list_runs(db: Session = Depends(get_db)):  # noqa: B008
             run_id=run.id,
             status=run.status,
             contract_text=run.contract_text,
+        overall_verdict=run.overall_verdict,
         )
         for run in runs
     ]
@@ -80,6 +81,7 @@ def get_run(
         run_id=run.id,
         status=run.status,
         contract_text=run.contract_text,
+        overall_verdict=run.overall_verdict,
     )
 
 
