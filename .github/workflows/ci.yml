@@ -27,7 +27,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v5
-      - run: uv sync --all-extras --dev
+      - run: uv sync --frozen --dev --group retrieval-heavy
       - run: uv run ruff check .
       - run: uv run alembic upgrade head
       - run: uv run pytest
@@ -40,7 +40,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v5
-      - run: uv sync --all-extras --dev
+      - run: uv sync --frozen --dev --group retrieval-heavy
       - name: Run evaluation gate
         run: uv run python -m eval.ci_gate
 
