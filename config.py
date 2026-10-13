@@ -16,6 +16,7 @@ class Settings(BaseSettings):
     llm_timeout_seconds: float = 30.0
     fine_tuned_base_model: str = "Qwen/Qwen2.5-1.5B-Instruct"
     fine_tuned_adapter_path: str = "models/qwen2.5-1.5b-clauseguard"
+    frontend_origins: str = "http://localhost:3000,http://127.0.0.1:3000"
 
     # FR-SEG-002: below this many clauses, or above this many words in a single
     # clause, the Segmenter falls back to an LLM call.
