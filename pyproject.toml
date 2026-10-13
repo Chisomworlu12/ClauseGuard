@@ -5,28 +5,16 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "accelerate>=1.15.0",
     "alembic>=1.19.1",
-    "chromadb>=1.5.9",
-    "datasets>=5.1.0",
     "fastapi>=0.141.1",
     "fastapi-health>=0.4.0",
-    "flashrank>=0.2.10",
     "langchain>=1.4.2",
-    "langchain-chroma>=1.1.0",
-    "langchain-community>=0.4.2",
-    "langchain-huggingface>=1.2.2",
     "langchain-text-splitters>=1.1.2",
     "openai>=3.13.0",
-    "peft>=0.21.2",
     "psycopg[binary]>=3.3.5",
     "pydantic>=2.13.5",
     "pydantic-settings>=2.15.0",
     "rank-bm25>=0.2.2",
-    "sentence-transformers>=6.1.0",
-    "torch>=2.14.0",
-    "transformers>=5.17.0",
-    "trl>=1.14.1",
     "uvicorn>=0.52.4",
 ]
 
@@ -37,5 +25,22 @@ dev = [
     "ruff>=0.16.5",
 ]
 
+retrieval-heavy = [
+    "chromadb>=1.5.9",
+    "flashrank>=0.2.10",
+    "langchain-chroma>=1.1.0",
+    "langchain-community>=0.4.2",
+    "langchain-huggingface>=1.2.2",
+    "sentence-transformers>=6.1.0",
+]
+
+fine-tuning = [
+    "accelerate>=1.15.0",
+    "datasets>=5.1.0",
+    "peft>=0.21.2",
+    "torch>=2.14.0",
+    "transformers>=5.17.0",
+    "trl>=1.14.1",
+]
 [tool.ruff]
 extend-exclude = ["migrations/versions"]
