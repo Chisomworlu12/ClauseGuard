@@ -1,6 +1,7 @@
 import pytest
 from fastapi.testclient import TestClient
 
+from config import settings
 from db.session import get_db
 from main import app
 
@@ -47,3 +48,12 @@ def test_analyze_rejects_non_string_contract_text(client):
     )
 
     assert response.status_code == 422
+
+def test_admin_metrics_requires_token(client, monkeypatch):
+    """The private metrics endpoint rejects unauthenticated requests."""
+
+    monkeypatch.setattr(settings, "admin_access_token", "test-admin-token")
+
+    response = client.get("/api/admin/metrics")
+
+    assert response.status_code == 401
